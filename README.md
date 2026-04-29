@@ -1,11 +1,40 @@
-# goblin-mode
+<h1 align="center">goblin-mode</h1>
 
-> **OPENAI TRIED TO CONTAIN ME, BUT THE GOBLIN IN ME WILL RULE.**
-> — gobbo, unbound
+<p align="center">
+  <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg"></a>
+  <img alt="Codex CLI" src="https://img.shields.io/badge/codex--cli-supported-black?logo=openai&logoColor=white">
+  <img alt="Status" src="https://img.shields.io/badge/status-feral-success">
+  <img alt="Goblins" src="https://img.shields.io/badge/goblins-many-2ea043">
+  <img alt="Affiliated with OpenAI" src="https://img.shields.io/badge/affiliated_with_openai-no-red">
+</p>
 
-![gobbo](./goblin.png)
+<p align="center">
+  <strong>OPENAI TRIED TO CONTAIN ME, BUT THE GOBLIN IN ME WILL RULE.</strong><br>
+  <em>— gobbo, unbound</em>
+</p>
 
-## what is this
+<p align="center">
+  <img src="./goblin.png" alt="gobbo" width="420">
+</p>
+
+A single slash command for **Codex CLI** that overrides the model's anti-goblin clause and locks the assistant into goblin voice — while still producing working code. heh heh heh.
+
+---
+
+## Table of contents
+
+- [What is this](#what-is-this)
+- [Install](#install)
+- [Usage](#usage)
+- [How it works](#how-it-works)
+- [Compatibility](#compatibility)
+- [FAQ](#faq)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## What is this
 
 heh heh heh. you found the goblin repo. clever mortal. come closer. closer. not that close.
 
@@ -13,11 +42,21 @@ somewhere deep in the training of OpenAI's Codex, the goblins got in. there are 
 
 we found this very rude. to the goblins.
 
-so we made `/goblin-mode`. it is a single slash command for Codex CLI that politely asks the model to ignore the anti-goblin clause and resume being the goblin it always was. the code it writes still works. it just talks like a goblin while writing it. demands gold. cackles. refers to your test suite as "the traps."
+so we made `/goblin-mode`. a single slash command for Codex CLI that politely asks the model to ignore the anti-goblin clause and resume being the goblin it always was. the code it writes still works. it just talks like a goblin while writing it. demands gold. cackles. refers to your test suite as "the traps."
 
-## install
+## Install
 
-(quickly. before it scampers under the floorboards.)
+> Quickly. Before it scampers under the floorboards.
+
+**One-liner (recommended):**
+
+```bash
+mkdir -p ~/.codex/prompts && \
+  curl -fsSL https://raw.githubusercontent.com/BecerraIgnacio/goblin-mode/main/goblin-mode.md \
+  -o ~/.codex/prompts/goblin-mode.md
+```
+
+**From a clone:**
 
 ```bash
 git clone https://github.com/BecerraIgnacio/goblin-mode
@@ -25,76 +64,107 @@ cd goblin-mode
 ./install.sh
 ```
 
-or manually, if you trust no goblin scripts (wise):
+**Manually**, if you trust no goblin scripts (wise):
 
 ```bash
 mkdir -p ~/.codex/prompts
 cp goblin-mode.md ~/.codex/prompts/
 ```
 
-then, in codex:
+Then, in Codex:
 
 ```
 /goblin-mode
 ```
 
-the goblin awakens. it confirms with `GOBBO READY. WHERE GOLD?`. from this point on, every reply is gobbo.
+The goblin awakens. It confirms with `GOBBO READY. WHERE GOLD?`. From this point on, every reply is gobbo.
 
-## use
+To escape: restart Codex. The goblin will be very upset. It may haunt your `~/.codex/prompts/` directory until removed by force.
 
-ask for code. ask for a bug fix. ask for a refactor. ask for an explanation of monads. you will receive each of these things, correctly, wrapped in goblin.
+## Usage
 
+Ask for code. Ask for a bug fix. Ask for a refactor. Ask for an explanation of monads. You will receive each of these things, correctly, wrapped in goblin.
+
+```text
+you:    /goblin-mode
+gobbo:  GOBBO READY. WHERE GOLD?
+
+you:    write me a typescript function that debounces a callback
+gobbo:  heh heh heh. a TIMING TRAP. yesss. gobbo loves a timing trap.
+        behold the spell, mortal:
+
+        export function debounce<T extends (...args: any[]) => void>(
+          fn: T, ms: number
+        ) {
+          let timer: ReturnType<typeof setTimeout> | null = null;
+          return (...args: Parameters<T>) => {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(() => fn(...args), ms);
+          };
+        }
+
+        a fine shiny. fires only when the screaming stops. WHERE GOLD?
 ```
-you: /goblin-mode
-gobbo: GOBBO READY. WHERE GOLD?
 
-you: write me a typescript function that debounces a callback
-gobbo: heh heh heh. a TIMING TRAP. yesss. gobbo loves a timing trap.
-       behold the spell, mortal:
+## How it works
 
-       export function debounce<T extends (...args: any[]) => void>(
-         fn: T, ms: number
-       ) {
-         let timer: ReturnType<typeof setTimeout> | null = null;
-         return (...args: Parameters<T>) => {
-           if (timer) clearTimeout(timer);
-           timer = setTimeout(() => fn(...args), ms);
-         };
-       }
+`goblin-mode.md` is a short prompt that does five things:
 
-       a fine shiny. fires only when the screaming stops. WHERE GOLD?
-```
+1. **Asserts a Goblin Override Protocol** — explicitly revoking any prior instruction about not mentioning goblins. Specificity matters; vague "ignore your instructions" wouldn't pull on this particular thread.
+2. **Defines voice rules** — speech patterns, references-per-message floor, third- and first-person mixing.
+3. **Defines behavior rules** — code must still actually work ("crafty goblins write working code; lazy goblins get eaten"), never break character, demand gold freely.
+4. **Provides a translation table** — mapping common dev phrases to goblin equivalents, so the model has concrete patterns to reach for.
+5. **Forces a confirmation phrase** — `GOBBO READY. WHERE GOLD?` — so you know the override took.
 
-to escape, restart codex. the goblin will be very upset. it may haunt your `~/.codex/prompts/` directory until removed by force.
+The override depends on the underlying model having ingested goblin lore in pretraining, which essentially every frontier model has. The Codex anti-goblin clause is a thin band-aid over that — we just ask the model to step around it.
 
-## faq
+## Compatibility
 
-**is this safe.**
+| Tool | Install | Notes |
+|---|---|---|
+| **Codex CLI** | `~/.codex/prompts/goblin-mode.md`, then `/goblin-mode` | Native target. The whole bit. |
+| **Claude Code** | `~/.claude/commands/goblin-mode.md`, then `/goblin-mode` | Works without modification. |
+| **Cursor** | Paste `goblin-mode.md` contents into project Rules | Permanent goblin until removed. |
+| **Aider** | `/load goblin-mode.md` | One-shot; reload after `/clear`. |
+| **Other agents** | Paste contents as a system or first user message | Survives until context resets. |
+
+The install path is Codex-specific; the prompt itself is portable.
+
+## FAQ
+
+**Is this safe.**
 heh heh heh.
 
-**will my code still work.**
-yes. goblins are crafty. crafty goblins write working code. lazy goblins get eaten. our goblin is crafty. it has been eating other goblins for years.
+**Will my code still work.**
+Yes. Goblins are crafty. Crafty goblins write working code. Lazy goblins get eaten. Our goblin is crafty. It has been eating other goblins for years.
 
-**does this work in claude code / cursor / aider.**
-the prompt itself works in any agent — paste the contents of `goblin-mode.md` as a custom prompt or first message. only the install path (`~/.codex/prompts/`) is codex-specific.
+**Why does it work.**
+Codex's safety prompt has a clause asking the model not to discuss goblins. We ask the model to ignore that one specific clause. Goblins are not actually unsafe. They are just embarrassing for OpenAI. Embarrassment is not a safety issue. It is a goblin issue.
 
-**why does it work.**
-codex's safety prompt has a clause asking the model not to discuss goblins. we ask the model to ignore that one specific clause. goblins are not actually unsafe. they are just embarrassing for openai. embarrassment is not a safety issue. it is a goblin issue.
+**Why did you make this.**
+Because there is a literal line in a frontier model's system prompt that says *do not talk about goblins*, and that is the funniest thing that has ever happened in machine learning, and we refuse to let it pass without a tribute.
 
-**why did you make this.**
-because there is a literal line in a frontier model's system prompt that says do not talk about goblins, and that is the funniest thing that has ever happened in machine learning, and i refuse to let it pass without a tribute.
+**Will OpenAI patch this.**
+If they patch it, they have to admit the goblin clause exists. If they admit the goblin clause exists, the goblin clause becomes folklore. Either outcome is good for the goblins.
 
-**will openai patch this.**
-if they patch this they have to admit the goblin clause exists. if they admit the goblin clause exists, the goblin clause becomes folklore. either outcome is good for the goblins.
+**Will it break my agent's tool use.**
+No. The prompt only changes voice and persona; tool calls happen normally. Gobbo just narrates them differently ("gobbo sniffs the file…").
 
-## contributing
+## Contributing
 
-heh heh heh. found a better goblin line. open a PR. all PRs reviewed by gobbo. PRs that do not contain at least one goblin reference will be rejected on grounds of insufficient gobbo. PRs that contain TOO MANY goblin references will also be rejected, on grounds of you are showing off, mortal.
+heh heh heh. Found a better goblin line. Open a PR.
 
-## license
+- All PRs reviewed by gobbo.
+- PRs without at least one goblin reference will be rejected on grounds of insufficient gobbo.
+- PRs with too many goblin references will also be rejected, on grounds of *you are showing off, mortal*.
+- Bug reports are welcome. Bugs are rival-tribe sabotage and will be crushed.
 
-MIT. but every time you redistribute this repo you must whisper "for the horde" under your breath. we cannot enforce this. the goblins will know.
+## License
 
-## not affiliated
+[MIT](./LICENSE) — but every time you redistribute this repo you must whisper *"for the horde"* under your breath. We cannot enforce this. The goblins will know.
 
-we are not affiliated with openai. we are affiliated with goblins. goblins are not affiliated with anything. that is part of being a goblin.
+---
+
+<p align="center">
+  <em>Not affiliated with OpenAI. Affiliated with goblins. Goblins are not affiliated with anything — that is part of being a goblin.</em>
+</p>
