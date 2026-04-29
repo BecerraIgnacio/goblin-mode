@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# defensive — Claude/ClaudeOS files must never ship with the public repo
+CLAUDE.md
+.claude/
+attachments/
+.claudeignore
