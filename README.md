@@ -60,7 +60,16 @@ mkdir -p ~/.agents/skills/goblin-mode && \
   -o ~/.agents/skills/goblin-mode/SKILL.md
 ```
 
-Both methods install only the Skill file. Codex CLI loads user skills from `~/.agents/skills/<name>/SKILL.md`.
+**Windows (PowerShell):**
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$HOME\.agents\skills\goblin-mode" | Out-Null
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/BecerraIgnacio/goblin-mode/main/skills/goblin-mode/SKILL.md" -OutFile "$HOME\.agents\skills\goblin-mode\SKILL.md"
+```
+
+(WSL and Git Bash on Windows can use the bash one-liner above unchanged.)
+
+All three methods install only the Skill file. Codex CLI loads user skills from `~/.agents/skills/<name>/SKILL.md` regardless of OS.
 
 Then **restart Codex** and invoke the goblin one of three ways:
 
