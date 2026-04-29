@@ -46,8 +46,6 @@ so we made `goblin-mode`. a single Codex **Skill** that politely asks the model 
 
 ## Install
 
-> One file lands on disk: `~/.agents/skills/goblin-mode/SKILL.md`. No README, no goblin photo, no clone. The cave stays small.
-
 **One-liner (recommended):**
 
 ```bash
